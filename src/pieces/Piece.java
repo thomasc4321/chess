@@ -5,8 +5,10 @@ public abstract class Piece {
     public final boolean isWhite;
     public final String representation;
     protected Coordinate position;
+    protected final Board board;
 
-    public Piece(String representation, Coordinate position, boolean isWhite){
+    public Piece(Board board, String representation, Coordinate position, boolean isWhite){
+        this.board = board;
         this.representation = representation;
         this.isWhite = isWhite;
         this.position = position;
@@ -15,20 +17,24 @@ public abstract class Piece {
     /**
      * @return a 64 element array of possible move coordinates
      */
-    abstract public Coordinate[] getPossibleMoves(Board board);
+    abstract public Coordinate[] getPossibleMoves();
 
     /**
      * Moves the piece on the board to the given space
-     *
-     * @param coordinate
+     * Intended external function to move a piece, calls Board from here
+     * @param newCoordinate
      */
-    abstract public void move(Coordinate coordinate);
+    public void move(Coordinate newCoordinate){
+        board.movePiece(this, newCoordinate);
+        position = newCoordinate;
+    }
+
+    public Coordinate getPosition() {
+        return position;
+    }
 
     @Override
     public String toString(){
         return representation;
     }
-
-
-
 }

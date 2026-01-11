@@ -13,10 +13,10 @@ public final class GameLogic {
         return false;
     }
 
-    public static Piece createPieceFromType(PieceType type, Coordinate coordinate, boolean isWhite){
+    public static Piece createPieceFromType(Board board, PieceType type, Coordinate coordinate, boolean isWhite){
         switch(type){
             case PAWN -> {
-                return new Pawn(coordinate, isWhite);
+                return new Pawn(board, coordinate, isWhite);
             }
             default -> {
                 return null;

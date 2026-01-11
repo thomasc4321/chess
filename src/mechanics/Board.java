@@ -17,6 +17,11 @@ public class Board {
         board[coordinate.rank()-1][coordinate.file()-1] = piece;
     }
 
+    public void movePiece(Piece piece, Coordinate newCoordinate){
+        setPiece(piece.getPosition(), null);
+        setPiece(newCoordinate, piece);
+    }
+
     public Piece getPiece(Coordinate coordinate){
         return board[coordinate.rank()-1][coordinate.file()-1];
     }
@@ -24,7 +29,7 @@ public class Board {
     public void setPiecesRank(int rank, PieceType pieceType, boolean isWhite){
         for(int i = 1; i <= GameSettings.RANK_LENGTH; i++){
             Coordinate newPosition = new Coordinate(i, rank);
-            setPiece(newPosition, GameLogic.createPieceFromType(pieceType, newPosition, isWhite));
+            setPiece(newPosition, GameLogic.createPieceFromType(this, pieceType, newPosition, isWhite));
         }
     }
 

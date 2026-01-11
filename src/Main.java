@@ -2,6 +2,7 @@ import mechanics.Board;
 import mechanics.BoardFactory;
 import mechanics.Coordinate;
 import pieces.*;
+import ui.UtilsUI;
 
 public class Main {
     public static void main(String[] args) {
@@ -16,13 +17,29 @@ public class Main {
         System.out.println(board.toString());
         System.out.println();
 
-        Pawn pawn1 = (Pawn) board.getPiece(new Coordinate(2,2));
+        Pawn pawn1 = (Pawn) board.getPiece(new Coordinate(2,3));
 
-        Coordinate[] possibleMoves = pawn1.getPossibleMoves(board);
-        for(Coordinate move : possibleMoves){
-            if(move != null){
-                System.out.println(move);
-            }
-        }
+        UtilsUI.printPossibleMoves(pawn1);
+
+        pawn1.move(new Coordinate(2,5));
+
+        System.out.println();
+        System.out.println(board.toString());
+        System.out.println();
+        UtilsUI.printPossibleMoves(pawn1);
+
+        pawn1.move(new Coordinate(2,6));
+
+        System.out.println();
+        System.out.println(board.toString());
+        System.out.println();
+        UtilsUI.printPossibleMoves(pawn1);
+
+        pawn1.move(new Coordinate(1,7));
+
+        System.out.println();
+        System.out.println(board.toString());
+        System.out.println();
+        UtilsUI.printPossibleMoves(pawn1);
     }
 }

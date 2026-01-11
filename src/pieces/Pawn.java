@@ -4,12 +4,12 @@ import mechanics.*;
 public class Pawn extends Piece{
     boolean hasMoved = false;
 
-    public Pawn(Coordinate position, boolean isWhite){
-        super("P", position, isWhite);
+    public Pawn(Board board, Coordinate position, boolean isWhite){
+        super(board, "P", position, isWhite);
     }
 
     @Override
-    public Coordinate[] getPossibleMoves(Board board) {
+    public Coordinate[] getPossibleMoves() {
         Coordinate[] moves = new Coordinate[64];
         int moveIndex = 0;
         int movementDirection = isWhite ? 1 : -1;
@@ -58,7 +58,10 @@ public class Pawn extends Piece{
     }
 
     @Override
-    public void move(Coordinate coordinate){
+    public void move(Coordinate newCoordinate){
+        //should this check if move is valid or just trust user?
         hasMoved = true;
+
+        super.move(newCoordinate);
     }
 }
