@@ -6,12 +6,16 @@ public abstract class Piece {
     public final String representation;
     protected Coordinate position;
     protected final Board board;
+    protected final int MAX_MOVES;
+    public final PieceType pieceType;
 
-    public Piece(Board board, String representation, Coordinate position, boolean isWhite){
+    public Piece(Board board, String representation, Coordinate position, boolean isWhite, int maxMoves, PieceType pieceType){
         this.board = board;
         this.representation = representation;
         this.isWhite = isWhite;
         this.position = position;
+        MAX_MOVES = maxMoves;
+        this.pieceType = pieceType;
     }
 
     /**
@@ -30,7 +34,11 @@ public abstract class Piece {
     }
 
     public Coordinate getPosition() {
-        return position;
+        return new Coordinate(position.file(), position.rank());
+    }
+
+    public Board getBoard(){
+        return board;
     }
 
     @Override

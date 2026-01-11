@@ -18,8 +18,9 @@ public final class BoardFactory {
         Board board = new Board();
 
         board.setPiecesRank(2, PieceType.PAWN, true);
-        board.setPiecesRank(3, PieceType.PAWN, true);
         board.setPiecesRank(7, PieceType.PAWN, false);
+        GameLogic.createPieceFromType(board, PieceType.QUEEN,
+                new Coordinate(4,4), true);
 
         return board;
     }

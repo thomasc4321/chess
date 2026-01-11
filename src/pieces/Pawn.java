@@ -5,12 +5,12 @@ public class Pawn extends Piece{
     boolean hasMoved = false;
 
     public Pawn(Board board, Coordinate position, boolean isWhite){
-        super(board, "P", position, isWhite);
+        super(board, "P", position, isWhite, 4, PieceType.PAWN);
     }
 
     @Override
     public Coordinate[] getPossibleMoves() {
-        Coordinate[] moves = new Coordinate[64];
+        Coordinate[] moves = new Coordinate[MAX_MOVES];//update number of moves for promotion options?
         int moveIndex = 0;
         int movementDirection = isWhite ? 1 : -1;
 

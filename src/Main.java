@@ -1,3 +1,4 @@
+import jdk.jshell.execution.Util;
 import mechanics.Board;
 import mechanics.BoardFactory;
 import mechanics.Coordinate;
@@ -17,29 +18,16 @@ public class Main {
         System.out.println(board.toString());
         System.out.println();
 
-        Pawn pawn1 = (Pawn) board.getPiece(new Coordinate(2,3));
+        Queen queen1 = (Queen) board.getPiece(new Coordinate(4,4));
 
-        UtilsUI.printPossibleMoves(pawn1);
-
-        pawn1.move(new Coordinate(2,5));
-
+        UtilsUI.printPossibleMoves(queen1);
+        UtilsUI.displayPossibleMoves(queen1);
         System.out.println();
-        System.out.println(board.toString());
-        System.out.println();
-        UtilsUI.printPossibleMoves(pawn1);
 
-        pawn1.move(new Coordinate(2,6));
+        queen1.move(new Coordinate(4, 7));
 
+        UtilsUI.printPossibleMoves(queen1);
+        UtilsUI.displayPossibleMoves(queen1);
         System.out.println();
-        System.out.println(board.toString());
-        System.out.println();
-        UtilsUI.printPossibleMoves(pawn1);
-
-        pawn1.move(new Coordinate(1,7));
-
-        System.out.println();
-        System.out.println(board.toString());
-        System.out.println();
-        UtilsUI.printPossibleMoves(pawn1);
     }
 }

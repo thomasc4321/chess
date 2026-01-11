@@ -9,9 +9,24 @@ public class Board {
 
     }
 
-    private void setBoard(){}
+    /**
+     * completely resets state of the board 2D array. Warning: new pieces are created
+     * @param copyOfBoard
+     */
+    public void setBoard(Piece[][] copyOfBoard){
+        Piece oldPiece;
+        for(int rank = 0; rank < GameSettings.RANK_LENGTH; rank++){
+            for(int file = 0; file < GameSettings.FILE_LENGTH; file++){
+                oldPiece = copyOfBoard[rank][file];
 
-    public void createPiece(){}
+                if(oldPiece != null){
+                    //warning, copied pieces are completely new, not retaining important data e.g. if pawn has moved
+                    board[rank][file] = GameLogic.createPieceFromType(this,
+                            oldPiece.pieceType, oldPiece.getPosition(), oldPiece.isWhite);
+                }
+            }
+        }
+    }
 
     public void setPiece(Coordinate coordinate, Piece piece){
         board[coordinate.rank()-1][coordinate.file()-1] = piece;
@@ -33,6 +48,9 @@ public class Board {
         }
     }
 
+    public Piece[][] getBoardState(){
+        return board;
+    }
 
     @Override
     public String toString(){
@@ -59,7 +77,9 @@ public class Board {
             rank--;
             output.append("\n");
         }
-        output.append("  ");int aValue = Character.getNumericValue('A');
+        output.append("  ");
+
+        int aValue = Character.getNumericValue('A');
         for(int i = 0; i < board.length; i++){
             output.append((char) (65 + i));
             output.append("   ");
